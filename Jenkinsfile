@@ -9,7 +9,7 @@ pipeline {
   stages {
     stage('Build') {
       steps {
-        sh 'sudo npm install -g gatsby-cli'
+        sh 'npm install gatsby-cli'
         sh 'gatsby build'
       }
     }
