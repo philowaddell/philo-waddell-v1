@@ -9,8 +9,8 @@ pipeline {
   stages {
     stage('Build') {
       steps {
-        sh 'npm install'
-        sh 'gatsby build'
+        sh 'npm ci'
+        sh 'npm run develop'
       }
     }
 
