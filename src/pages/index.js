@@ -1,16 +1,21 @@
 import React from 'react';
 import Theme from "@styles/GlobalStyles";
 
-import { About, Experience, Projects } from '@components';
+import { Nav, Home, About, Experience, Projects, Contact } from '@components';
 
 const IndexPage = () => {
   return (
-    <div className='scroll-port'>
-      <Theme/>
-      <About/>
-      <Experience/>
-      <Projects/>
-    </div>
+    <>
+      <Nav/>
+      <div className='scroll-port'>
+        <Theme/>
+        <Home/>
+        <About/>
+        <Projects/>
+        <Experience/>
+        <Contact/>
+      </div>
+    </>
   )
 }
 

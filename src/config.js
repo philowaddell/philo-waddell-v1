@@ -1,5 +1,24 @@
 module.exports = {
 
+  navLinks: [
+    {
+      name: 'About',
+      url: '/#about',
+    },
+    {
+      name: 'Experience',
+      url: '/#experience',
+    },
+    {
+      name: 'Projects',
+      url: '/#projects',
+    },
+    {
+      name: 'Contact',
+      url: '/#contact',
+    },
+  ],
+
   srConfig: (delay = 200, viewFactor = 0.25) => ({
     origin: 'bottom',
     distance: '20px',

@@ -13,7 +13,6 @@ const Theme = () => {
         ${variables};
 
         html {
-          font-family: sans-serif;
           scroll-snap-type: mandatory;
           scroll-snap-points-y: repeat(100vh);
           scroll-snap-type: y mandatory;
@@ -31,9 +30,22 @@ const Theme = () => {
           position: relative;
         }
 
-        h1 {
-          margin: 0px;
-          color: blue;
+        h1,
+        h2,
+        h3,
+        h4,
+        h5,
+        h6 {
+          margin: 0 0 10px 0;
+          font-weight: 600;
+          color: var(--lightest-slate);
+          line-height: 1.1;
+        }
+
+        .big-heading {
+          margin: 0;
+          line-height: 0.9;
+          font-size: clamp(50px, 12vw, 100px);
         }
         
       `}
