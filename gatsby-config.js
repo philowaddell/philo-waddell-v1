@@ -13,25 +13,22 @@ module.exports = {
       resolve: "gatsby-source-filesystem",
       options: {
         name: "images",
-        path: "./src/images/",
+        path: `${__dirname}/src/images/`,
       },
-      __key: "images",
     },
     {
       resolve: "gatsby-source-filesystem",
       options: {
-        name: "pages",
-        path: "./src/pages/",
+        name: "content",
+        path: `${__dirname}/content/`,
       },
-      __key: "pages",
     },
     {
       resolve: "gatsby-source-filesystem",
       options: {
-        name: "text",
-        path: "./src/text/",
+        name: "projects",
+        path: `${__dirname}/content/projects`,
       },
-      __key: "text",
-  },
+    },
   ],
 };
