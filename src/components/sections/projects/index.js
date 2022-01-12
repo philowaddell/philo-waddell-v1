@@ -6,7 +6,7 @@ import { Box } from "@mui/system";
 
 import Section from  '@templates/section';
 
-const Portfolio = () => {
+const Projects = () => {
 
   const data = useStaticQuery(graphql`
     query {
@@ -26,7 +26,7 @@ const Portfolio = () => {
   `);
 
   return (
-    <Section>
+    <Section id='projects'>
       <Box height="100%" display="flex">
         <Grid
           container
@@ -52,4 +52,4 @@ const Portfolio = () => {
   );
 };
 
-export default Portfolio;
+export default Projects;

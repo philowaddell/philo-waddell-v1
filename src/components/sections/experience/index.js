@@ -65,8 +65,8 @@ const Experience = () => {
   }, [prefersReducedMotion, skillsRef]);
 
   return (
-    <ExperienceSection>
-      <div id='tmp' ref={revealContainer}>
+    <ExperienceSection id="experience">
+      <div ref={revealContainer}>
         <h2>Hello World</h2>
         <StyledList>
           <TransitionGroup>
