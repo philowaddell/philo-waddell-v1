@@ -1,9 +1,10 @@
 import React from "react";
 import Grid from "@mui/material/Grid";
-import DisplayCard from "../portfolio/DisplayCard";
+import DisplayCard from "./DisplayCard";
 import { useStaticQuery, graphql } from "gatsby";
-import "../../styles/GlobalStyles.css";
 import { Box } from "@mui/system";
+
+import Section from  '@templates/section';
 
 const Portfolio = () => {
 
@@ -15,11 +16,7 @@ const Portfolio = () => {
           frontmatter {
             title
             link
-            image {
-            childImageSharp {
-              gatsbyImageData
-              }
-            }
+            image
             image_alt
           }
           body
@@ -29,7 +26,7 @@ const Portfolio = () => {
   `);
 
   return (
-    <section id="portfolio">
+    <Section>
       <Box height="100%" display="flex">
         <Grid
           container
@@ -51,7 +48,7 @@ const Portfolio = () => {
           ))}
         </Grid>
       </Box>
-    </section>
+    </Section>
   );
 };
 
