@@ -10,37 +10,21 @@ import Section from  '@templates/section';
 
 const StyledContent = styled.div`
 
-  display: flex;
-  flex-direction: column;
-  flex-grow: 1;
-  align-items: flex-start;
-  justify-content: center;
-  padding: 10%;
+  padding: 0px 150px;
 
   .sub-heading {
-    var(--slate);
-    font-size: clamp(12px, 2.5vw, 23px);
+    color: var(--primary2);
+    font-size: clamp(12px, 2.5vw, 21px);
   }
 
 `;
 
-const Home = () => {
-  const sectionRef = useRef(null);
-  const prefersReducedMotion = usePrefersReducedMotion();
-
-  useEffect(() => {
-    if (prefersReducedMotion) {
-      return;
-    }
-
-    sr.reveal(sectionRef.current, srConfig());
-  }, [prefersReducedMotion]);
-
+const Home = (props) => {
   return (
-    <Section id='home' background='#011f54'>
-      <StyledContent ref={sectionRef}>
-        <h1 className='big-heading'>Philo Waddell</h1>
-        <h3 className='sub-heading'>Software Engineer | Machine Learning Enthusiast</h3>
+    <Section {...props}>
+      <StyledContent >
+        <h1 className='big-heading'>Main Heading</h1>
+        <h3 className='sub-heading'>Sub-heading 1 | Sub-heading 2</h3>
       </StyledContent>
     </Section>
   )

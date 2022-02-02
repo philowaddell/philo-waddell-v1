@@ -1,12 +1,11 @@
 import React from 'react';
-import styled from '@emotion/styled';
 
 import Section from  '@templates/section';
 
-const Contact = () => {
+const Contact = (props) => {
 
   return (
-    <Section id='contact' background='#42F563'>
+    <Section {...props}>
       <h1>Contact</h1>
     </Section>
   )
