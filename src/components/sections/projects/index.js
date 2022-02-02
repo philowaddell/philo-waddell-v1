@@ -1,23 +1,30 @@
-import React from "react";
-import Grid from "@mui/material/Grid";
-import DisplayCard from "./DisplayCard";
+import React from 'react';
 import { useStaticQuery, graphql } from "gatsby";
-import { Box } from "@mui/system";
+import Section from '@templates/section';
 
-import Section from  '@templates/section';
+import Project from './project';
 
-const Projects = () => {
+const Projects = (props) => {
+
+  const [currentProject, setCurrentProject] = React.useState(0);
+  const [increment, setIncrement] = React.useState(0);
 
   const data = useStaticQuery(graphql`
     query {
-      allMdx {
+      allMdx( filter: {fileAbsolutePath: {regex: "/projects/"}} ) {
         nodes {
           id
           frontmatter {
+            order
             title
             link
-            image
+            image {
+              childImageSharp {
+                gatsbyImageData
+              }
+            }
             image_alt
+            tech
           }
           body
         }
@@ -25,31 +32,29 @@ const Projects = () => {
     }
   `);
 
+  const projectData = data.allMdx.nodes;
+
   return (
-    <Section id='projects'>
-      <Box height="100%" display="flex">
-        <Grid
-          container
-          flexGrow={1}
-          justifyContent="center"
-          alignItems="center"
-          columnSpacing={5}
-        >
-          {data.allMdx.nodes.map((node) => (
-            <Grid item key={node.id}>
-              <DisplayCard 
-                title={node.frontmatter.title} 
-                link={node.frontmatter.link}
-                image={node.frontmatter.image}
-                imageAlt={node.frontmatter.image_alt}
-                body={node.body} 
-              />
-            </Grid>
-          ))}
-        </Grid>
-      </Box>
+    // Why true &&
+    <Section {...props}>
+      {true &&
+        projectData.map((node, i) => {
+          const { frontmatter, body } = node;
+          const { order } = frontmatter;
+          return (
+            <Project
+              key={i}
+              id={order}
+              data={{ ...frontmatter, body }}
+              current={currentProject}
+              setCurrent={setCurrentProject}
+              increment={increment}
+              setIncrement={setIncrement}
+            />
+          )
+        })}
     </Section>
-  );
-};
+  )
+}
 
 export default Projects;
