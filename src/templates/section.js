@@ -105,7 +105,7 @@ const Section = ({ id, heading, current, setCurrent, next, increment, setIncreme
         </StyledSection>
       }
     </>
-  )
+  );
 }
 
 export default Section;

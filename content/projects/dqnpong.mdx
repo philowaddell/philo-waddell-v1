@@ -8,7 +8,8 @@ tech:
   - Python
   - PyTorch
   - Colab
-  - Pandas
+  - Pickle
+  - Reinforcement Learning
 ---
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam vestibulum erat mauris, sed elementum ipsum dapibus eget. Nullam pretium posuere neque non congue. Fusce laoreet consequat eleifend. Vestibulum porta vitae orci sed gravida. Aliquam ultrices laoreet mi, vitae euismod metus. Praesent vestibulum est sapien, consequat malesuada ante volutpat ut. Nulla facilisi. Etiam non magna ex. Vivamus dictum a magna vitae blandit. Praesent massa elit, mollis eu nibh in, porta pretium dolor. Nullam quis lectus mattis, commodo dolor a, placerat est. Donec quis quam ultricies, tempus nulla sit amet, imperdiet massa. Vivamus egestas, urna a tristique luctus, augue sapien euismod elit, at consectetur odio diam sed elit. Phasellus eu consectetur massa. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.
+An implementation of DeepMind's DQN algorithm, which was presented in the 2013 paper: [Playing Atari with Deep Reinforcement Learning](https://arxiv.org/pdf/1312.5602v1.pdf). Both my own and DeepMind's agents achived an average total reward of 20, when applying an [epsilon-greedy](https://www.baeldung.com/cs/epsilon-greedy-q-learning) policy with epsilon = 0.05; this is equivalent to winning 1-21, on average. Both agents would often concede the first point due to the game starting with the opponents paddle hidden from the player.

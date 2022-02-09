@@ -4,9 +4,7 @@ import { MDXRenderer } from 'gatsby-plugin-mdx'
 import { useStaticQuery, graphql } from "gatsby";
 
 import { Section }  from  '@templates';
-
-const contact = "d2VibWFpbEBtYWlsc2V2aWNlLmNvLnVr";
-const subject = "TXkgU3ViamVjdCBMaW5l";
+import { contactDetails } from "@config";
 
 const Contact = (props) => {
 
@@ -30,7 +28,7 @@ const Contact = (props) => {
   const mailLink = React.useRef('');
 
   const decodeLink = () => {
-    mailLink.current = `mailto:${atob(contact)}?subject=${atob(subject)}` || '';
+    mailLink.current = `mailto:${atob(contactDetails.email)}?subject=${atob(contactDetails.subject)}` || '';
   }
 
   return (
@@ -40,8 +38,9 @@ const Contact = (props) => {
       </MDXRenderer>
       <a
         className='smallButton'
-        href={mailLink.current}
-        onClick={decodeLink}
+        href={`${mailLink.current}`}
+        // href='mailto:email@server.com?subject=My subject line'
+        onFocus={decodeLink}
         >
         Say Hello
       </a>

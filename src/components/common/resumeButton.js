@@ -1,8 +1,9 @@
 import React, { useEffect } from "react";
 
 import styled from '@emotion/styled';
+import { resumeFileID } from "@config";
 
-const StyledButton = styled.button`
+const StyledButton = styled.a`
   animation: ${props => props.animation || 'none' } 1000ms ease both;
 `;
 
@@ -42,6 +43,7 @@ const ResumeButton = ( { current, visible, setVisible } ) => {
         mounted &&
         <StyledButton 
           className='smallButton resume-button' 
+          href={`https://docs.google.com/uc?export=download&id=${resumeFileID}`}
           animation={getAnimation} 
           onAnimationEnd={handleAnimationEnd}
           onClick={handleClick}

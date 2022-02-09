@@ -2,6 +2,7 @@ import React from 'react';
 import styled from '@emotion/styled';
 
 import { Section }  from  '@templates';
+import { resumeFileID } from '@config';
 
 const StyledContent = styled.div`
 
@@ -14,16 +15,17 @@ const StyledContent = styled.div`
 
 const Home = (props) => {
 
-  const resumeClicked = () => {
-
-  };
-
   return (
     <Section {...props}>
       <StyledContent >
-        <h1 className='big-heading'>Main Heading</h1>
-        <h3 className='sub-heading'>Sub-heading 1 | Sub-heading 2</h3>
-        <button className='smallButton' onClick={() => resumeClicked()}>Resume</button>
+        <h1 className='big-heading'>Philo Waddell</h1>
+        <h2 className='sub-heading'>Full Stack Engineer & Machine Learning Enthusiast</h2>
+        <a 
+          className='smallButton resume-button' 
+          href={`https://docs.google.com/uc?export=download&id=${resumeFileID}`}
+        >
+          Resume
+        </a>
       </StyledContent>
     </Section>
   )
