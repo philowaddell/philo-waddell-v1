@@ -33,7 +33,7 @@ const StyledProject = styled.div`
   
     .project-description {
       padding: 25px;
-      font-size: var(--fz-md);
+      font-size: var(--fz-xl);
       color: var(--text2);
       background-color: var(--primary2);
       border-radius: var(--border-radius);
