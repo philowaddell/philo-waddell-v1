@@ -12,6 +12,7 @@ const ResumeButton = ( { current, visible, setVisible } ) => {
 
   useEffect(() => {
     if ( current === 0 ) return setVisible(false);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [current]);
 
   useEffect(() => {
@@ -43,6 +44,7 @@ const ResumeButton = ( { current, visible, setVisible } ) => {
           className='smallButton resume-button' 
           animation={getAnimation} 
           onAnimationEnd={handleAnimationEnd}
+          onClick={handleClick}
         >
           Resume
         </StyledButton>

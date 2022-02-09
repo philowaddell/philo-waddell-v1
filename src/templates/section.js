@@ -1,7 +1,7 @@
-import React, { useEffect, useRef, useCallback } from 'react';
+import React, { useEffect, useCallback } from 'react';
 import styled from '@emotion/styled';
 
-import { usePrevious, useScrollListener } from '@hooks';
+import { useScrollListener } from '@hooks';
 
 import { Content }  from  '@templates';
 
@@ -30,21 +30,20 @@ const animations = {
 
 const Section = ({ id, heading, current, setCurrent, next, increment, setIncrement, ...props }) => {
   const [element, setElement] = React.useState();
-  const previous = usePrevious(current);
-  // Maybe should be ref?
   const [animation, setAnimation] = React.useState('none');
   const [mounted, setMounted] = React.useState(false);
   const [scrollDirection, enableScroll] = useScrollListener(element);
 
   const sectionRef = useCallback((node) => {
     setElement(node);
-  }, [mounted]);
+  },[]);
 
   // Current section updates
   useEffect(() => {
     if (current !== id ) return;
     updateAnimation();
     setMounted(true);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   },[current]);
 
   // Scroll triggered
@@ -52,6 +51,7 @@ const Section = ({ id, heading, current, setCurrent, next, increment, setIncreme
     if ( current !== id ) return;
     if (current + scrollDirection < 0 || current + scrollDirection > 4) return enableScroll();
     setIncrement(scrollDirection);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   },[scrollDirection]);
 
   // Increment updates
@@ -60,6 +60,7 @@ const Section = ({ id, heading, current, setCurrent, next, increment, setIncreme
     if ( increment === 0 ) return;
     next.current  = current + increment;
     updateAnimation()
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [increment]);
 
 

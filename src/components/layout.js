@@ -1,5 +1,4 @@
-import React, { useState, useEffect } from 'react';
-import { Global, css } from '@emotion/react'
+import React from 'react';
 
 import ThemeProvider from '@styles/ThemeProvider';
 

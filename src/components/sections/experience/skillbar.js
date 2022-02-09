@@ -1,8 +1,6 @@
-import React, { useEffect, useLayoutEffect, useRef } from 'react';
+import React from 'react';
 import { keyframes } from "@emotion/react"
 import styled from '@emotion/styled'
-
-import { useStateRef } from '@hooks';
 
 const SkillListItem = styled.li`
   display: flex;

@@ -1,13 +1,8 @@
-import React, { useEffect, useRef } from 'react';
+import React from 'react';
 import styled from '@emotion/styled'
-import { CSSTransition, TransitionGroup } from 'react-transition-group';
 
 import { MDXRenderer } from 'gatsby-plugin-mdx'
 import { useStaticQuery, graphql } from "gatsby";
-
-import sr from '@utils/sr';
-import { srConfig } from '@config';
-import { usePrefersReducedMotion } from '@hooks';
 
 import { Section, Image } from '@templates';
 import SkillBar from "./skillbar"

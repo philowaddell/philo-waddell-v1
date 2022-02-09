@@ -35,6 +35,9 @@ const Contact = (props) => {
 
   return (
     <Section heading={heading} {...props}>
+      <MDXRenderer> 
+        {body} 
+      </MDXRenderer>
       <a
         className='smallButton'
         href={mailLink.current}

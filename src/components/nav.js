@@ -1,10 +1,8 @@
 import React, { useEffect, useRef } from "react";
-import { CSSTransitionGroup } from 'react-transition-group'
 import styled from '@emotion/styled';
 
 import { navLinks } from "@config";
 import { ResumeButton } from "@components";
-import { TurnedIn } from "@mui/icons-material";
 
 const StyledNav = styled.nav`
   display: grid;

@@ -5,8 +5,18 @@ const useScrollListener = (element) => {
   const scrollEnabled = useRef(false);
 
   useEffect(() => {
+
+    const onWheelHandler = (e) => {
+      if ( e.deltaY === 0 ) return;
+      if ( scrollEnabled.current ) {
+        disableScroll();
+        setScrollDirection(Math.sign(e.deltaY));
+      }
+    };
+  
     if( !element ) return;
     element.addEventListener('wheel', onWheelHandler);
+    
   }, [element]);
 
   const enableScroll = () => {
@@ -17,15 +27,6 @@ const useScrollListener = (element) => {
   const disableScroll = () => {
     scrollEnabled.current = false;
   };
-
-  const onWheelHandler = (e) => {
-    if ( e.deltaY === 0 ) return;
-    if ( scrollEnabled.current ) {
-      disableScroll();
-      setScrollDirection(Math.sign(e.deltaY));
-    }
-  };
-
 
   return [scrollDirection, enableScroll];
 };

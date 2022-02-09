@@ -1,10 +1,5 @@
-import React, { useEffect, useRef } from 'react';
+import React from 'react';
 import styled from '@emotion/styled';
-
-import { usePrefersReducedMotion } from '@hooks';
-
-import { srConfig } from '@config';
-import sr from '@utils/sr';
 
 import { Section }  from  '@templates';
 
