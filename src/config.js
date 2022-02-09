@@ -1,5 +1,12 @@
 module.exports = {
 
+  resumeFileID: '1WJ0bBFq5riPRNf8Zc3FEWjtb-nWItJGZ',
+
+  contactDetails : {
+    email: 'cGhpbG93YWRAbGl2ZS5jby51aw==',
+    subject: 'RmFuY3kgYSBxdWljayBjaGF0Pw==',
+  },
+
   navLinks: [
     {
       name: 'About',
