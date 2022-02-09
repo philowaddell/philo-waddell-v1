@@ -1,8 +1,6 @@
 import React from "react";
 import styled from "@emotion/styled";
 
-import { GatsbyImage, getImage } from "gatsby-plugin-image";
-
 import { MDXRenderer } from "gatsby-plugin-mdx";
 import { useStaticQuery, graphql } from "gatsby";
 
