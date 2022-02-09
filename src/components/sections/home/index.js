@@ -6,25 +6,29 @@ import { usePrefersReducedMotion } from '@hooks';
 import { srConfig } from '@config';
 import sr from '@utils/sr';
 
-import Section from  '@templates/section';
+import { Section }  from  '@templates';
 
 const StyledContent = styled.div`
 
-  padding: 0px 150px;
-
   .sub-heading {
-    color: var(--primary2);
+    color: var(--text2);
     font-size: clamp(12px, 2.5vw, 21px);
   }
 
 `;
 
 const Home = (props) => {
+
+  const resumeClicked = () => {
+
+  };
+
   return (
     <Section {...props}>
       <StyledContent >
-        <h1 className='big-heading'>Philo Waddell</h1>
-        <h3 className='sub-heading'>Full Stack Engineer + ML Enthusiast</h3>
+        <h1 className='big-heading'>Main Heading</h1>
+        <h3 className='sub-heading'>Sub-heading 1 | Sub-heading 2</h3>
+        <button className='smallButton' onClick={() => resumeClicked()}>Resume</button>
       </StyledContent>
     </Section>
   )

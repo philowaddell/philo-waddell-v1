@@ -2,7 +2,7 @@ import React, { useRef } from 'react';
 import { Layout, Header, Home, About, Experience, Projects, Contact } from '@components';
 
 const IndexPage = () => {
-  const [currentSection, setCurrentSection] = React.useState(0);
+  const [currentSection, setCurrentSection] = React.useState(2);
   const next = useRef(currentSection);
   const [increment, setIncrement] = React.useState(0);
   

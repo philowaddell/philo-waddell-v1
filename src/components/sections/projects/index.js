@@ -36,7 +36,7 @@ const Projects = (props) => {
 
   return (
     // Why true &&
-    <Section {...props}>
+    <Section heading={'Projects'} {...props}>
       {true &&
         projectData.map((node, i) => {
           const { frontmatter, body } = node;
@@ -45,6 +45,7 @@ const Projects = (props) => {
             <Project
               key={i}
               id={order}
+              totalProjects={projectData.length}
               data={{ ...frontmatter, body }}
               current={currentProject}
               setCurrent={setCurrentProject}
