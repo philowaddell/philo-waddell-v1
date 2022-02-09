@@ -23,8 +23,8 @@ const Home = (props) => {
   return (
     <Section {...props}>
       <StyledContent >
-        <h1 className='big-heading'>Main Heading</h1>
-        <h3 className='sub-heading'>Sub-heading 1 | Sub-heading 2</h3>
+        <h1 className='big-heading'>Philo Waddell</h1>
+        <h3 className='sub-heading'>Full Stack Engineer + ML Enthusiast</h3>
       </StyledContent>
     </Section>
   )
