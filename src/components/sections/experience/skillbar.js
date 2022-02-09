@@ -24,7 +24,7 @@ const SkillListItem = styled.li`
       height: 2px;
       border-radius: 10px / 10px;
       align-self: center;
-      animation: ${props => grow(props.width)} 20s ${props => props.transitionDelay + 500}ms cubic-bezier(0.27, 0.63, 0.36, 1) 1 forwards;
+      animation: ${props => grow(props.width)} 1s ${props => props.transitionDelay + 500}ms cubic-bezier(0.27, 0.63, 0.36, 1) 1 forwards;
     }
 
   }

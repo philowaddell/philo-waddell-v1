@@ -23,7 +23,7 @@ const IndexPage = () => {
       <Projects id={3} {...sectionProps} />
       <Contact id={4} {...sectionProps} />
     </Layout>
-  )
+  );
 }
 
 export default IndexPage

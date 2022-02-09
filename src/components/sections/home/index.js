@@ -21,8 +21,8 @@ const Home = (props) => {
   return (
     <Section {...props}>
       <StyledContent >
-        <h1 className='big-heading'>Main Heading</h1>
-        <h3 className='sub-heading'>Sub-heading 1 | Sub-heading 2</h3>
+        <h1 className='big-heading'>Philo Waddell</h1>
+        <h2 className='sub-heading'>Full Stack Engineer & Machine Learning Enthusiast</h2>
         <button className='smallButton' onClick={() => resumeClicked()}>Resume</button>
       </StyledContent>
     </Section>
