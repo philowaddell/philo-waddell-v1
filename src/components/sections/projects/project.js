@@ -1,23 +1,25 @@
 import React, { useEffect } from 'react';
 import { MDXRenderer } from 'gatsby-plugin-mdx'
-import { GatsbyImage, getImage } from 'gatsby-plugin-image'
 import styled from '@emotion/styled';
+
+import { Image } from '@templates';
 
 const StyledProject = styled.div`
 
   display: grid;
   grid: 1fr /  repeat(6, 1fr);
-  padding: 15%;
-  padding-top: 13%;
+  height: 380px;
   animation: ${props => props.animation} 1s ease forwards;
 
   .project-image {
+    z-index: 1;
     grid-area: 1 / 4 / 1 / 7;
     align-self: center;
-    z-index: -1;
   }
 
   .project-content {
+
+    z-index: 2;
 
     grid-area: 1 / 1 / 1 / 5;
     text-align: left;
@@ -74,33 +76,10 @@ const StyledProject = styled.div`
       }
     }
 
-    .smallButton {
-      color: var(--highlight);
-      background-color: transparent;
-      border: 1px solid var(--highlight);
-      border-radius: var(--border-radius);
-      padding: 0.75rem 1rem;
-      margin-right: 15px;
-      font-size: var(--fz-xs);
-      font-family: var(--font-mono);
-      line-height: 1;
-      text-decoration: none;
-      cursor: pointer;
-      transition: var(--transition);
-      &:hover,
-      &:focus {
-        background-color: var(--tint);
-        outline: none;
-      }
-      &:after {
-        display: none !important;
-      }
-    }
-
   }
 `;
 
-const Project = ({ id, data, current, setCurrent, increment, setIncrement }) => {
+const Project = ({ id, totalProjects, data, current, setCurrent, increment, setIncrement }) => {
   const [mounted, setMounted] = React.useState(false);
   const [visible, setVisible] = React.useState(false);
   const { title, body, github, image, imageAlt, tech } = data;
@@ -162,18 +141,16 @@ const Project = ({ id, data, current, setCurrent, increment, setIncrement }) => 
                 <button className='smallButton' onClick={() => prevClicked()}>Prev</button>
               }
               { 
-                current < 3 &&
+                current < totalProjects - 1 &&
                 <button className='smallButton' onClick={() => nextClicked()}>Next</button>
               }
             </div>        
           </div>
           <div className='project-image'>
-            { 
-              <GatsbyImage
-                image={getImage(image)}
-                alt={imageAlt || ""}
-              /> 
-            }
+            <Image 
+              image={image}
+              alt={imageAlt}
+            />
           </div>
         </StyledProject>
       }

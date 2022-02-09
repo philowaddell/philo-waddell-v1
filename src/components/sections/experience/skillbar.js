@@ -1,17 +1,41 @@
-import React from 'react';
+import React, { useEffect, useLayoutEffect, useRef } from 'react';
 import { keyframes } from "@emotion/react"
 import styled from '@emotion/styled'
 
-const SkillNameText = styled.h5`
-  color: var(--primary2);
-  margin: 0px;
-  min-width: 130px;
-`;
+import { useStateRef } from '@hooks';
 
-const StyledListItem = styled.li`
+const SkillListItem = styled.li`
   display: flex;
-  margin: 5px 20px 5px 20px;
-  animation: fadeInUp 500ms 1500ms cubic-bezier(0.645, 0.045, 0.355, 1) 1 both;
+  margin: 15px 20px 15px 20px;
+  animation: fadeInUp 500ms ${props => props.transitionDelay || '1500'}ms ease 1 both;
+
+  .skill-title {
+    color: var(--highlight);
+    font-family: var(--font-mono);
+    margin: 0px;
+    min-width: 130px;
+  }
+
+  .skill-bar-outer {
+    display: flex;
+    flex-grow: 1;
+
+    .skill-bar-inner {
+      background: var(--highlight);
+      width: 0px;
+      height: 2px;
+      border-radius: 10px / 10px;
+      align-self: center;
+      animation: ${props => grow(props.width)} 20s ${props => props.transitionDelay + 500}ms cubic-bezier(0.27, 0.63, 0.36, 1) 1 forwards;
+    }
+
+  }
+
+  .skill-percent {
+    font-size: var(--fz-md);
+    color: var(--highlight);
+  }
+
 `;
 
 const grow = (width) => keyframes`
@@ -19,22 +43,26 @@ const grow = (width) => keyframes`
   to { width: ${width}%; }
 `
 
-const SkillBar = React.forwardRef(( { transitionDelay, skill, width } ) => {
+const SkillBar = ( { transitionDelay, skill, width } ) => {
+
+  // const [clientWidth, skillBarRef] = useStateRef(node => (node?.clientWidth || 0));
+
+  // useEffect(() => {
+  //   console.log(`the new clientHeight is: ${clientWidth}`);
+  // }, [clientWidth])
+
   return (
-    <StyledListItem transitionDelay={transitionDelay}>
-      <SkillNameText>{skill}</SkillNameText>
-      <div className='skill-bar-outer' css={{display: 'flex', flexGrow: 1}}>
-        <div className='skill-bar-inner' css={{
-            background: 'var(--primary2)',
-            width: '0px',
-            height: '10px',
-            borderRadius: '10px / 10px',
-            alignSelf: 'center',
-            animation: `${grow(width)} 2s 2000ms ease-in-out 1 forwards`,
-          }}/>
+    <SkillListItem transitionDelay={transitionDelay} width={width}>
+      <h5 className='skill-title'>{skill}</h5>
+      <div className='skill-bar-outer'>
+        <div 
+          className='skill-bar-inner' 
+          // ref={skillBarRef} 
+        />
       </div>
-    </StyledListItem>
+      {/* <p className='skill-percent'>{`${percentage}%`}</p> */}
+    </SkillListItem>
   )
-});
+};
 
 export default SkillBar;

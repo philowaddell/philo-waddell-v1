@@ -3,6 +3,8 @@ import styled from '@emotion/styled';
 
 import { usePrevious, useScrollListener } from '@hooks';
 
+import { Content }  from  '@templates';
+
 const StyledSection = styled.section`
   id: ${props => props.id ? props.id : undefined};
   display: flex;
@@ -14,7 +16,19 @@ const StyledSection = styled.section`
   animation: ${props => props.animation} 1s ease forwards;
 `;
 
-const Section = ({ id, current, setCurrent, next, increment, setIncrement, ...props }) => {
+const animations = {
+  navForward: {
+    entrance: 'slidein-bottom',
+    exit: 'slideout-top',
+  },
+  navBackward: {
+    entrance: 'slidein-top',
+    exit: 'slideout-bottom',
+  },
+  pageLoad: 'slidein-right',
+};
+
+const Section = ({ id, heading, current, setCurrent, next, increment, setIncrement, ...props }) => {
   const [element, setElement] = React.useState();
   const previous = usePrevious(current);
   // Maybe should be ref?
@@ -50,24 +64,32 @@ const Section = ({ id, current, setCurrent, next, increment, setIncrement, ...pr
 
 
   const handleAnimationEnd = (props) => {
-    console.log(props)
+    const animationName = props.animationName;
     if ( current !== id ) return;
-    if ( current === next.current ) {
-      enableScroll();
-      setIncrement(0);
-    } else {
-      setMounted(false)
-      setCurrent(next.current);
-    }
+    if ( animationName === animations.pageLoad ) return handleEntranceAnimationEnd();
+    if ( animationName === animations.navForward.entrance ) return handleEntranceAnimationEnd();
+    if ( animationName === animations.navBackward.entrance ) return handleEntranceAnimationEnd();
+    if ( animationName === animations.navForward.exit ) return handleExitAnimationEnd();
+    if ( animationName === animations.navBackward.exit ) return handleExitAnimationEnd();
+  };
+
+  const handleEntranceAnimationEnd = () => {
+    enableScroll();
+    setIncrement(0);
+  };
+
+  const handleExitAnimationEnd = () => {
+    setMounted(false)
+    setCurrent(next.current);
   };
 
   const updateAnimation = () => {
     //console.log(`ID[${id}] : ${next.current === current} | ${increment}`)
-    if (next.current === current && increment < 0) return setAnimation('slidein-top');
-    if (next.current  === current && increment > 0) return setAnimation('slidein-bottom');
-    if (next.current  !== current && increment  > 0) return setAnimation('slideout-top');
-    if (next.current !== current && increment < 0) return setAnimation('slideout-bottom');
-    if (next.current === current && increment === 0) return setAnimation('slidein-right');
+    if (next.current === current && increment < 0) return setAnimation(animations.navBackward.entrance);
+    if (next.current  === current && increment > 0) return setAnimation(animations.navForward.entrance);
+    if (next.current  !== current && increment  > 0) return setAnimation(animations.navForward.exit);
+    if (next.current !== current && increment < 0) return setAnimation(animations.navBackward.exit);
+    if (next.current === current && increment === 0) return setAnimation(animations.pageLoad);
     return 'none';
   }
 
@@ -75,8 +97,10 @@ const Section = ({ id, current, setCurrent, next, increment, setIncrement, ...pr
     <  >
       {
         mounted &&
-        <StyledSection ref={sectionRef} animation={animation} onAnimationEnd={handleAnimationEnd}>
-          {props.children}
+        <StyledSection id={id} ref={sectionRef} animation={animation} onAnimationEnd={handleAnimationEnd}>
+          <Content sectionID={id} heading={heading} >
+            {props.children}
+          </Content>
         </StyledSection>
       }
     </>

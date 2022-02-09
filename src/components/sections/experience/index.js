@@ -9,15 +9,14 @@ import sr from '@utils/sr';
 import { srConfig } from '@config';
 import { usePrefersReducedMotion } from '@hooks';
 
-import Section from '@templates/section';
+import { Section, Image } from '@templates';
 import SkillBar from "./skillbar"
 
 const ExperienceContent = styled.div`
-  padding: 0% 15%;
 
   .inner {
     display: grid;
-    grid: 1fr 1fr / 5fr 4fr;
+    grid: 2fr 3fr / 5fr 4fr;
 
     ul {
       grid-area: 1 / 2 / 3 / 3;
@@ -32,8 +31,20 @@ const ExperienceContent = styled.div`
     }
 
     .experience-text {
-      font-size: var(--fz-md);
+      font-size: var(--fz-xl);
       color: var(--text2);
+    }
+
+    .experience-tools {
+      grid-area: 2 / 1 / 3 / 2;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: center;
+      
+      .tool-logo { 
+        margin: 20px;
+      }
     }
 
   }
@@ -49,6 +60,11 @@ const Experience = (props) => {
           frontmatter {
             heading
             skills
+            tools {
+              childImageSharp {
+                gatsbyImageData(width: 60)
+              }
+            }
           }
           body
         }
@@ -57,13 +73,12 @@ const Experience = (props) => {
   `);
 
   const { frontmatter, body } = data.allMdx.nodes[0];
-  const { heading, skills } = frontmatter;
+  const { heading, skills, tools } = frontmatter;
   const skillsJson = Object.fromEntries(skills.map(s => s.split(',')));
 
   return (
-    <Section {...props}>
+    <Section heading={heading} {...props}>
       <ExperienceContent>
-        <h2 className="numbered-heading">{heading}</h2>
         <div className='inner'>
           <div  className='experience-text'>
             <MDXRenderer> 
@@ -75,13 +90,26 @@ const Experience = (props) => {
                 Object.entries(skillsJson).map(([skill, width], i) => (
                   <SkillBar 
                     key={i} 
-                    transitionDelay={1000}
+                    transitionDelay={1500}
                     skill={skill} 
                     width={width}
                   />
                 ))
               }
           </ul>
+          <div className='experience-tools'>
+              {
+                tools.map((image, i) => (
+                  <div className='tool-logo' key={i}>
+                    <Image
+                      key={i}
+                      image={image}
+                    />
+                  </div>
+                ))
+                
+              }
+          </div>
         </div>
       </ExperienceContent>
     </Section>

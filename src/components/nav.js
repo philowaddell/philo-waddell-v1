@@ -1,6 +1,10 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useRef } from "react";
+import { CSSTransitionGroup } from 'react-transition-group'
 import styled from '@emotion/styled';
+
 import { navLinks } from "@config";
+import { ResumeButton } from "@components";
+import { TurnedIn } from "@mui/icons-material";
 
 const StyledNav = styled.nav`
   display: grid;
@@ -8,23 +12,31 @@ const StyledNav = styled.nav`
   padding: 0px 40px;
   height: 100px;
   align-items: center;
-`;
 
-const StyledLinks = styled.div`
-  grid-area: 1 / 2;
-  justify-self: flex-end;
+  .links-outer {
+    grid-area: 1 / 2;
+    justify-self: flex-end;
+    
+    ol {
+      padding: 0;
+      margin: 0px ${props => props.current ? '100px' : '0px'} 0px 0px;
+      transition: all 250ms 1200ms cubic-bezier(0.645, 0.045, 0.355, 1);
   
-  ol {
-    padding: 0;
-    margin: 0;
-
-    li {
-      display: inline;
-      margin: 0 5px;
-      position: relative;
-      counter-increment: item 1;
-      font-size: var(--fz-md);
+      li {
+        display: inline;
+        margin: 0 5px;
+        position: relative;
+        counter-increment: item 1;
+        font-size: var(--fz-md);
+      }
     }
+  }
+
+  .resume-button {
+    grid-area: 1 / 2;
+    justify-self: flex-end;
+  }
+
 `;
 
 
@@ -71,6 +83,8 @@ const HomeButton = styled.button`
 const Nav = ( { current, setIncrement } ) => {
 
   const [active, setActive] = React.useState(0);
+  const [showResumeButton, setShowResumeButton] = React.useState(false);
+  const linksRef = useRef(null);
 
   useEffect(() => {
     setActive(current);
@@ -85,24 +99,35 @@ const Nav = ( { current, setIncrement } ) => {
     setIncrement(0 - current);
   };
 
+  const handleTransitionEnd = (props) => {
+    if ( props.target === linksRef.current && current > 0 ) {
+      setShowResumeButton(true);
+    }
+  };
+
   return (
-    <StyledNav>
+    <StyledNav current={current} active={active} onTransitionEnd={handleTransitionEnd}>
       <HomeButton onClick={handleHomeClick} >{`PW`}</HomeButton>
-      <StyledLinks>
-        <ol>
-          {navLinks &&
-            navLinks.map(({ url, name }, i) => (
-              <li key={i}>
-                <StyledLinkButton 
-                  onClick={() => handleLinkClick(i + 1)} 
-                  active={active == i + 1}
-                >
-                  {name}
-                </StyledLinkButton>
-              </li>
-            ))}
-        </ol>
-      </StyledLinks>
+      <div className="links-outer" >
+          <ol ref={linksRef}>
+            {navLinks &&
+              navLinks.map(({ url, name }, i) => (
+                <li key={i}>
+                  <StyledLinkButton 
+                    onClick={() => handleLinkClick(i + 1)} 
+                    active={active === i + 1}
+                  >
+                    {name}
+                  </StyledLinkButton>
+                </li>
+              ))}
+          </ol>
+      </div>
+      <ResumeButton 
+        current={current}
+        visible={showResumeButton}
+        setVisible={setShowResumeButton}
+      />
     </StyledNav>
   );
 };

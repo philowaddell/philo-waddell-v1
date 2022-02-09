@@ -4,7 +4,7 @@ const TransitionStyles = css`
   /* Slide in */
   @keyframes slidein-left {
     from { 
-      transform: translateX(-100%);
+      transform: translateX(-150%);
     }
     to { 
       transform: translateX(0);
@@ -13,7 +13,7 @@ const TransitionStyles = css`
 
   @keyframes slidein-right {
     from { 
-      transform: translateX(100%);
+      transform: translateX(150%);
     }
     to { 
       transform: translateX(0);
@@ -44,7 +44,7 @@ const TransitionStyles = css`
       transform: translateX(0);
     }
     to { 
-      transform: translateX(-100%);
+      transform: translateX(-150%);
     }
   }
 
@@ -53,7 +53,7 @@ const TransitionStyles = css`
       transform: translateX(0);
     }
     to { 
-      transform: translateX(100%);
+      transform: translateX(150%);
     }
   }
 
@@ -84,13 +84,25 @@ const TransitionStyles = css`
 
   @keyframes fadeInUp {
     from {
-        transform: translate3d(0,50px,0);
+        transform: translate3d(0,5px,0);
         opacity: 0;
     }
 
     to {
         transform: translate3d(0,0,0);
         opacity: 1;
+    }
+  }
+
+  @keyframes fadeOutDown {
+    from {
+      transform: translate3d(0,0,0);
+      opacity: 1;
+    }
+
+    to {
+      transform: translate3d(0,5px,0);
+      opacity: 0;
     }
   }
 

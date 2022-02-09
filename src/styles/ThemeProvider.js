@@ -33,7 +33,8 @@ const paleBlue = {
   shadow: 'rgba(227, 240, 255, 0.7)', // Lavender Shadow
 };
 
-const themes = [darkBlue, red, paleBlue]
+//const themes = [darkBlue, red, paleBlue];
+const themes = [darkBlue];
 const defaultTheme = themes[0];
 
 const ThemeProvider = ( { current, children } ) => {
