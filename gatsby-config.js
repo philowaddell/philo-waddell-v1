@@ -1,4 +1,5 @@
 module.exports = {
+  pathPrefix: "/philo-waddell-v1",
   siteMetadata: {
     siteUrl: "https://www.yourdomain.tld",
     title: "philo-waddell-v1",
