@@ -78,6 +78,7 @@ const GlobalStyles = ( {colours} ) => {
         
         #root {
           height: 100vh;
+          min-width: 900px;
           display: grid;
           grid: 1fr 8fr 1fr / 1fr 8fr 1fr;
         }

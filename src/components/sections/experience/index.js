@@ -9,41 +9,62 @@ import SkillBar from "./skillbar";
 
 const ExperienceContent = styled.div`
 
-  .inner {
-    display: grid;
-    grid: auto / 5fr 4fr;
+  display: grid;
+  grid: auto / 5fr 4fr;
+
+  .experience-skills {
+    grid-area: 1 / 2 / 3 / 3;
+
+    .skills-heading {
+      font-family: var(--font-mono);
+      padding-bottom: 15px;
+      color: var(--highlight);
+
+      &:after {
+        content: '';
+        display: block;
+        position: relative;
+        bottom: -10px;
+        width: 100%;
+        height: 1px;
+        background-color: var(--highlight);
+      }
+
+    }
 
     ul {
-      grid-area: 1 / 2 / 3 / 3;
+      display: flex;
+      flex-direction: column;
       padding: 0px;
       margin: 0px 0px 0px 40px;
       list-style-type: none;
-
+  
       li {
         margin-left: 0px;
       }
 
     }
 
-    .experience-text {
-      font-size: var(--fz-xl);
-      color: var(--text2);
-    }
-
-    .experience-tools {
-      grid-area: 2 / 1 / 3 / 2;
-      display: grid;
-      grid: auto / repeat(5, 1fr);
-      align-items: center;
-      justify-content: center;
-      
-      .tool-logo { 
-        justify-self: center;
-        padding: 10px 10px 0px 10px;
-      }
-    }
-
   }
+
+  .experience-text {
+    font-size: var(--fz-xl);
+    color: var(--text2);
+  }
+
+  .experience-tools {
+    grid-area: 2 / 1 / 3 / 2;
+    display: grid;
+    grid: auto / repeat(5, 1fr);
+    align-items: center;
+    justify-content: center;
+    
+    .tool-logo { 
+      justify-self: center;
+      padding: 10px 10px 0px 10px;
+    }
+  }
+
 `;
 
 const Experience = (props) => {
@@ -57,7 +78,7 @@ const Experience = (props) => {
             skills
             tools {
               childImageSharp {
-                gatsbyImageData(width: 80, quality: 100, layout: CONSTRAINED)
+                gatsbyImageData(width: 60, quality: 80, layout: CONSTRAINED)
               }
             }
           }
@@ -74,20 +95,22 @@ const Experience = (props) => {
   return (
     <Section heading={heading} {...props}>
       <ExperienceContent>
-        <div className="inner">
           <div className="experience-text">
             <MDXRenderer>{body}</MDXRenderer>
           </div>
-          <ul>
-            {Object.entries(skillsJson).map(([skill, width], i) => (
-              <SkillBar
-                key={i}
-                transitionDelay={1500}
-                skill={skill}
-                width={width}
-              />
-            ))}
-          </ul>
+          <div className="experience-skills">
+            <ul>
+              <h3 className="skills-heading">Languages</h3>
+              {Object.entries(skillsJson).map(([skill, width], i) => (
+                <SkillBar
+                  key={i}
+                  transitionDelay={1500}
+                  skill={skill}
+                  width={width}
+                />
+              ))}
+            </ul>
+          </div>
           <div className="experience-tools">
             {tools.map((image, i) => (
               <div className="tool-logo" key={i}>
@@ -95,7 +118,6 @@ const Experience = (props) => {
               </div>
             ))}
           </div>
-        </div>
       </ExperienceContent>
     </Section>
   );

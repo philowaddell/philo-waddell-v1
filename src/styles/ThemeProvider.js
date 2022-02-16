@@ -27,7 +27,7 @@ const paleBlue = {
   text1: '#434690',                   // Dark slate blue
   text2: '#a1acd1',                   // Dark steel Blue
   highlight: '#ff9eab',               // Pink
-  tint: 'rgba(249, 195, 202, 0.1)',    // Pink tint
+  tint: 'rgba(249, 195, 202, 0.1)',   // Pink tint
   shadow: 'rgba(227, 240, 255, 0.7)', // Lavender Shadow
 };
 
@@ -35,7 +35,7 @@ const paleBlue = {
 const themes = [darkBlue];
 const defaultTheme = themes[0];
 
-const ThemeProvider = ( { current, children } ) => {
+const ThemeProvider = ( { current = 0, children } ) => {
 
   const [colours, setColours] = React.useState(defaultTheme);
 
