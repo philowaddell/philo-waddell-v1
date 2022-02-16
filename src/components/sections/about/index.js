@@ -13,7 +13,7 @@ const AboutContent = styled.div`
 
     ul {
       display: grid;
-      grid-template-columns: repeat(2, minmax(140px, 200px));
+      grid-template-columns: repeat(3, minmax(140px, 200px));
       grid-gap: 0 10px;
       padding: 0;
       margin: 20px 0 0 0;
@@ -25,14 +25,14 @@ const AboutContent = styled.div`
         margin-bottom: 10px;
         padding-left: 20px;
         font-family: var(--font-mono);
-        font-size: var(--fz-xs);
+        font-size: var(--fz-md);
   
         &:before {
           content: '▹';
           position: absolute;
           left: 0;
           color: var(--highlight);
-          font-size: var(--fz-sm);
+          font-size: var(--fz-md);
           line-height: 12px;
         }
       }

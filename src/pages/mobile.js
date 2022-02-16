@@ -1,19 +1,29 @@
 import React from 'react';
 import styled from '@emotion/styled';
+import ThemeProvider from '@styles/ThemeProvider';
 
 import { MDXRenderer } from 'gatsby-plugin-mdx'
 import { useStaticQuery, graphql } from "gatsby";
 
-import { Section }  from  '@templates';
 import { contactDetails } from "@config";
 
 const ContactContent = styled.div`
 
-  display: grid;
-  justify-items: center;
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  justify-content: center;
+  align-items: center;
 
   .contact-heading {
     font-size: clamp(20px, 12vw, 50px);
+    line-height: 30px;
+  }
+
+  .contact-subheading {
+    color: var(--highlight);
+    font-weight: 100;
+    font-size: var(--fz-xl);
   }
 
   .contact-text {
@@ -35,11 +45,12 @@ const Contact = (props) => {
 
   const data = useStaticQuery(graphql`
     query {
-      allMdx( filter: {fileAbsolutePath: {regex: "/contact/"}} ) {
+      allMdx( filter: {fileAbsolutePath: {regex: "/mobile/"}} ) {
         nodes {
           id
           frontmatter {
             heading
+            subheading
           }
           body
         }
@@ -48,7 +59,7 @@ const Contact = (props) => {
   `);
 
   const { frontmatter, body } = data.allMdx.nodes[0];
-  const { heading } = frontmatter;
+  const { heading, subheading } = frontmatter;
 
   const mailLink = React.useRef('');
 
@@ -58,22 +69,23 @@ const Contact = (props) => {
   }
 
   return (
-    <Section {...props}>
-      <ContactContent>
-        <h1 className='contact-heading'>{heading}</h1>
-        <div className='contact-text'>
-          <MDXRenderer> 
-            {body} 
-          </MDXRenderer>
-        </div>
-        <button
-          className='smallButton contact-button'
-          onClick={handleContactClicked}
-          >
-          Say Hello
-        </button>
-      </ContactContent>
-    </Section>
+      <ThemeProvider>
+        <ContactContent>
+          <h1 className='contact-heading'>{heading}</h1>
+          <h2 className='sub-heading contact-subheading'>{subheading}</h2>
+          <div className='contact-text'>
+            <MDXRenderer> 
+              {body} 
+            </MDXRenderer>
+          </div>
+          <button
+            className='smallButton contact-button'
+            onClick={handleContactClicked}
+            >
+            Say Hello
+          </button>
+        </ContactContent>
+        </ThemeProvider>
   )
 }
 

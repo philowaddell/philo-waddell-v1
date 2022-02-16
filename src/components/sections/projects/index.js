@@ -11,34 +11,37 @@ const Projects = (props) => {
 
   const data = useStaticQuery(graphql`
     query {
-      allMdx( filter: {fileAbsolutePath: {regex: "/projects/"}} ) {
-        nodes {
-          id
-          frontmatter {
-            order
-            title
-            link
-            image {
-              childImageSharp {
-                gatsbyImageData
+      allMdx(filter: {fileAbsolutePath: {regex: "/projects/"}}) {
+        edges {
+          node {
+            id
+            frontmatter {
+              order
+              title
+              link
+              image {
+                childImageSharp {
+                  gatsbyImageData
+                }
               }
+              image_alt
+              tech
             }
-            image_alt
-            tech
+            body
           }
-          body
         }
       }
     }
   `);
 
-  const projectData = data.allMdx.nodes;
+  const projectData = data.allMdx.edges;
 
   return (
     // Why true &&
     <Section heading={'Projects'} {...props}>
       {true &&
-        projectData.map((node, i) => {
+        projectData.map((edge, i) => {
+          const { node } = edge;
           const { frontmatter, body } = node;
           const { order } = frontmatter;
           return (
