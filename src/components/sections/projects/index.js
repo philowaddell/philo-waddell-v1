@@ -18,7 +18,7 @@ const Projects = (props) => {
             frontmatter {
               order
               title
-              link
+              github
               image {
                 childImageSharp {
                   gatsbyImageData

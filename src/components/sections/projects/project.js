@@ -3,7 +3,7 @@ import { MDXRenderer } from 'gatsby-plugin-mdx'
 import styled from '@emotion/styled';
 
 import { Image } from '@templates';
-
+import IconGitHub from '@components/icons/github'
 const StyledProject = styled.div`
 
   display: grid;
@@ -26,11 +26,25 @@ const StyledProject = styled.div`
     align-self: center;
 
     .project-title {
-      margin: 0px 0px 20px;
-      font-size: clamp(24px, 5vw, 28px);
-      color: var(--text1);
+      display: inline-flex;
+      margin-bottom: 20px;
+      .title-text {
+        margin: 0px 20px 0px 0px;
+        font-size: clamp(24px, 5vw, 28px);
+        color: var(--text1);
+      }
+
+      a {
+        align-self: center;
+        svg {
+          width: 20px;
+          height: 20px;
+          color: var(--highlight);
+        }
+      }
     }
-  
+
+
     .project-description {
       padding: 25px;
       font-size: var(--fz-xl);
@@ -121,7 +135,12 @@ const Project = ({ id, totalProjects, data, current, setCurrent, increment, setI
         mounted && 
         <StyledProject animation={getAnimation} onAnimationEnd={() => unmount()}>
           <div className='project-content'>
-            <h3 className='project-title'>{title}</h3>
+            <div className='project-title'>
+              <h3 className='title-text'>{title}</h3>
+              <a href={github} target="_blank" rel="noreferrer">
+                <IconGitHub/>
+              </a>
+            </div>
             <div className='project-description box-shadow'>
               <MDXRenderer> 
                 {body} 
