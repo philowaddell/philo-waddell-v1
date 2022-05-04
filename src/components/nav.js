@@ -17,7 +17,7 @@ const StyledNav = styled.nav`
     
     ol {
       padding: 0;
-      margin: 0px ${props => props.current ? '100px' : '0px'} 0px 0px;
+      margin: 0px ${props => props.current ? '150px' : '0px'} 0px 0px;
       transition: all 250ms 1200ms cubic-bezier(0.645, 0.045, 0.355, 1);
   
       li {

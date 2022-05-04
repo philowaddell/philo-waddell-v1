@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useDeviceDetect } from "@hooks";
 import DesktopSite from './desktop';
 import MobileSite from './mobile';
@@ -10,11 +10,11 @@ const IndexPage = () => {
   return (
     <>
     {
-      isMobile &&
+      isMobile != undefined && isMobile &&
       <MobileSite/>
     }
     {
-      !isMobile &&
+      isMobile != undefined && !isMobile &&
       <DesktopSite/>
     }
     </>
