@@ -1,7 +1,8 @@
 module.exports = {
+  pathPrefix: "/philo-waddell-v1",
   siteMetadata: {
-    title: "Philo Waddell",
-    siteUrl: "https://philowaddell.co.uk",
+    siteUrl: "https://www.yourdomain.tld",
+    title: "philo-waddell-v1",
   },
   plugins: [
     "gatsby-plugin-image",
