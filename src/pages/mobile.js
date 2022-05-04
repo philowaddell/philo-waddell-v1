@@ -6,6 +6,7 @@ import { MDXRenderer } from 'gatsby-plugin-mdx'
 import { useStaticQuery, graphql } from "gatsby";
 
 import { contactDetails } from "@config";
+import { resumeFileID } from "@config";
 
 const ContactContent = styled.div`
 
@@ -68,6 +69,10 @@ const Contact = (props) => {
     window.location.href = mailLink.current;
   }
 
+  const handleDownloadClicked = () => {
+    window.location.href = `https://docs.google.com/uc?export=download&id=${resumeFileID}`;
+  }
+
   return (
       <ThemeProvider>
         <ContactContent>
@@ -80,9 +85,9 @@ const Contact = (props) => {
           </div>
           <button
             className='smallButton contact-button'
-            onClick={handleContactClicked}
+            onClick={handleDownloadClicked}
             >
-            Say Hello
+            Download CV
           </button>
         </ContactContent>
         </ThemeProvider>

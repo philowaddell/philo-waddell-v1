@@ -3,6 +3,7 @@ import styled from '@emotion/styled';
 
 import { Section }  from  '@templates';
 import { resumeFileID } from '@config';
+import { ResumeButton } from "@components";
 
 const StyledContent = styled.div`
 
@@ -20,12 +21,12 @@ const Home = (props) => {
       <StyledContent >
         <h1 className='big-heading'>Philo Waddell</h1>
         <h2 className='sub-heading'>Full Stack Engineer & Machine Learning Enthusiast</h2>
-        <a 
-          className='smallButton resume-button' 
-          href={`https://docs.google.com/uc?export=download&id=${resumeFileID}`}
-        >
-          Resume
-        </a>
+        <ResumeButton 
+          // This is a bit hacky, should refactor component
+          current={1}
+          visible={true}
+          setVisible={() => true}
+        />
       </StyledContent>
     </Section>
   )

@@ -48,7 +48,7 @@ const ResumeButton = ( { current, visible, setVisible } ) => {
           onAnimationEnd={handleAnimationEnd}
           onClick={handleClick}
         >
-          Resume
+          Download CV
         </StyledButton>
       }
     </>
