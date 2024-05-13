@@ -1,6 +1,6 @@
 module.exports = {
 
-  resumeFileID: '1WJ0bBFq5riPRNf8Zc3FEWjtb-nWItJGZ',
+  resumeFileID: '1rmemP5lrQak_QfM4p3DODGTKM8fSPpn2',
 
   contactDetails : {
     email: 'cGhpbG93YWRAbGl2ZS5jby51aw==',
